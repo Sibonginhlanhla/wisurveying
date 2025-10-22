@@ -3,125 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Aven Land Surveys</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>South Aven Land Surveys - Accordion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .logo-container {
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(139, 195, 74, 0.3));
+        }
+
+        .tagline {
+            font-size: 1.5em;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+            padding: 40px 60px;
+        }
+
+        .fun-fact-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            padding: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #1a1a1a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #8bc34a;
+            padding-left: 20px;
+        }
+
+        .about-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        /* Accordion Styles */
+        .accordion-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: #8bc34a;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.2);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .accordion-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 30px;
+            background: #f9f9f9;
+            border-top: 2px solid #8bc34a;
+        }
+
+        .accordion-content p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        .accordion-content ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .accordion-content ul li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .service-summary {
+            color: #777;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .accordion-item.active .service-summary {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #8bc34a;
+        }
+
+        .contact-item {
+            margin: 18px 0;
+            font-size: 1.15em;
+        }
+
+        .contact-info a {
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15em;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .accordion-header {
+                padding: 20px;
+            }
+            
+            .accordion-content-inner {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div class="logo-container">
-                <img src="logo.png" alt="South Aven Land Surveys Logo">
+                <img src="https://i.imgur.com/gXGM8jL.png" alt="South Aven Land Surveys">
             </div>
             <p class="tagline">Professional Land Surveying Services</p>
         </div>
 
         <div class="fun-fact">
             <div class="fun-fact-title">Did You Know?</div>
-            <p>Land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years! The Egyptians used basic geometry to re-establish farm boundaries after the Nile River's annual floods, and even the Great Pyramid of Giza owes its precise alignment to early surveying methods.</p>
+            <p>Land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years!</p>
         </div>
 
         <div class="content">
             <div class="section">
                 <h2>About</h2>
-                <p style="color: #555; line-height: 1.8; font-size: 1.05em;">
-                    We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data that supports construction, planning, design, development, and decision-making.
-                </p>
-                <p style="color: #555; line-height: 1.8; font-size: 1.05em; margin-top: 15px;">
-                    We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>, offering spatial insight and services to support throughout every stage of a project - from concept to completion.
-                </p>
+                <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data.</p>
+                <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>.</p>
             </div>
 
             <div class="section">
                 <h2>Services Offered</h2>
                 
-                <div class="service-detail">
-                    <h3>Construction Surveys</h3>
-                    <p>Construction surveying involves transferring the design data from plans onto the ground so that builders, and contractors can construct buildings, roads, bridges, pipelines, and other infrastructure accurately according to specifications.</p>
-                    <ul>
-                        <li><strong>Setting out:</strong> Marking the exact positions of structures, such as buildings, roads, columns, foundations, and utilities.</li>
-                        <li><strong>Level control:</strong> Establishing reference points (benchmarks) to ensure correct elevations and gradients.</li>
-                        <li><strong>Alignment checks:</strong> Verifying that structures are built in the right location, alignment, and orientation.</li>
-                        <li><strong>As-built surveys:</strong> Measuring and recording the completed work to confirm that construction matches the design - often required for project handover.</li>
-                        <li><strong>Monitoring:</strong> Measuring movement, deformation, or settlement of structures during or after construction.</li>
-                    </ul>
-                </div>
-
-                <div class="service-detail">
-                    <h3>Topographic Surveys</h3>
-                    <p>We provide precise <strong>topographic surveys</strong> to capture the natural and built features of your site. Our surveys detail ground elevations, contours, vegetation, buildings, roads, and other visible improvements - giving you an accurate foundation for planning, design, and development.</p>
-                    <p>Using advanced surveying technologies such as <strong>GNSS (GPS), total stations, drones, and LiDAR scanners</strong>, we deliver high-resolution data and detailed contour maps tailored to your project requirements.</p>
-                    <p>Whether you're designing infrastructure, preparing site plans, or managing construction, our topographic surveys give you the spatial accuracy and clarity needed to make informed decisions and streamline your project workflow.</p>
-                    <p>Deliverables are provided in industry-standard formats including <strong>CAD, GIS, and PDF</strong>, ready for direct integration into your engineering or architectural designs.</p>
-                </div>
-
-                <div class="service-detail">
-                    <h3>Town Planning Services (SPLUMA Applications and Exemptions)</h3>
-                    <p>We assist clients with the full range of <strong>SPLUMA (Spatial Planning and Land Use Management Act)</strong> applications and related town planning processes required for property development and land use compliance.</p>
-                    <p>Our services include the preparation and submission of <strong>SPLUMA applications</strong>, <strong>subdivision and consolidation approvals</strong>, <strong>rezoning</strong>, <strong>consent use</strong>, and <strong>SPLUMA exemptions</strong> where applicable. We liaise directly with municipalities and relevant authorities to ensure that your land development projects meet all statutory planning and land use requirements.</p>
-                    <p>Whether you're a <strong>developer, architect, surveyor, or property owner</strong>, we help streamline the application process, ensuring that all supporting documentation - including survey diagrams, site development plans, and motivation reports - are accurately prepared and professionally lodged.</p>
-                    <p>Our goal is to help you achieve <strong>legal land development rights</strong> efficiently and with full regulatory compliance.</p>
-                </div>
-
-                <div class="service-detail">
-                    <h3>Township Surveys</h3>
-                    <p>We provide comprehensive <strong>township survey services</strong> to support the establishment and registration of new townships in accordance with the requirements of the <strong>Surveyor-General</strong> and relevant planning legislation.</p>
-                    <p>Our team works closely with <strong>town planners, developers, engineers, and municipal authorities</strong> to ensure that all cadastral boundaries, erven, public roads, and open spaces are accurately surveyed and correctly represented on the approved township layout.</p>
-                    <p>Using advanced <strong>GNSS, total stations, and CAD systems</strong>, we prepare and submit <strong>General Plans</strong> and supporting documentation to the <strong>Surveyor-General's office</strong> for approval and registration.</p>
-                    <p>Whether you are developing a <strong>residential, commercial, or mixed-use township</strong>, we ensure precision, compliance, and timely delivery of all survey components required for township establishment and property registration.</p>
-                </div>
-
-                <div class="service-detail">
-                    <h3>Land Rights (Subdivisions and Consolidations)</h3>
-                    <p>Our work ensures the accurate delineation of property boundaries and the secure registration of land parcels within the <strong>Surveyor-General's</strong> cadastral system.</p>
-                    <p>Our services cover a wide range of cadastral projects, including:</p>
-                    <ul>
-                        <li>Subdivision and consolidation surveys</li>
-                        <li>Beacon relocations and boundary determinations</li>
-                        <li>Servitude and lease area surveys</li>
-                        <li>Sectional title and farm subdivision surveys</li>
-                        <li>Diagram and General Plan preparation and submission</li>
-                    </ul>
-                    <p>We work closely with <strong>landowners, developers, attorneys, conveyancers, and government institutions</strong> to ensure that every survey meets legal requirements and supports the lawful transfer, registration, or development of land.</p>
-                    <p>Our commitment is to provide <strong>accurate, compliant, and reliable cadastral data</strong> that protects your property rights and supports sustainable land development.</p>
-                </div>
-
-                <div class="service-detail">
-                    <h3>Mine Surveys</h3>
-                    <p>We provide precise and reliable <strong>mine surveying services</strong> to support both surface and underground mining operations throughout all stages of development - from exploration to production and closure.</p>
-                    <p>Our mine survey services include:</p>
-                    <ul>
-                        <li>Open-pit and underground surveys</li>
-                        <li>Volume calculations and stockpile measurements</li>
-                        <li>Drill and blast design support</li>
-                        <li>Underground control network establishment</li>
-                        <li>Stope and face mapping</li>
-                        <li>Aerial and LiDAR surveys for mine planning and monitoring</li>
-                        <li>Compliance surveys for statutory plans and reporting</li>
-                    </ul>
-                    <p>Using advanced <strong>GNSS, total stations, 3D laser scanners, and drone technology</strong>, we deliver accurate spatial data to assist in mine planning, safety monitoring, and production management.</p>
-                    <p>We ensure full compliance with the <strong>Mine Health and Safety Act</strong> and <strong>Department of Mineral Resources and Energy (DMRE)</strong> requirements, providing survey deliverables that integrate seamlessly with your mine planning software.</p>
-                    <p>Our goal is to help you achieve <strong>operational efficiency, regulatory compliance, and spatial accuracy</strong> across all mining activities.</p>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Qualifications & Skills</h2>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3>📜 Registered Professional</h3>
-                        <p>Registered Professional Land Surveyor</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Construction Surveys</h3>
+                            <p class="service-summary">Setting out, level control, and as-built surveys</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
                     </div>
-                    <div class="info-card">
-                        <h3>🎓 Education</h3>
-                        <p>University of KwaZulu-Natal<br>Land Surveying, Engineering (2015-2019)</p>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Construction surveying involves transferring the design data from plans onto the ground so that builders and contractors can construct infrastructure accurately.</p>
+                            <ul>
+                                <li><strong>Setting out:</strong> Marking exact positions of structures</li>
+                                <li><strong>Level control:</strong> Establishing reference points for elevations</li>
+                                <li><strong>Alignment checks:</strong> Verifying correct location and orientation</li>
+                                <li><strong>As-built surveys:</strong> Recording completed work</li>
+                                <li><strong>Monitoring:</strong> Measuring movement or settlement</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="info-card">
-                        <h3>💼 Experience</h3>
-                        <p>5+ years • GeoAfrika • Land Survey Africa</p>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Topographic Surveys</h3>
+                            <p class="service-summary">High-resolution terrain data using GNSS, drones, and LiDAR</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
                     </div>
-                    <div class="info-card">
-                        <h3>🛠️ Core Skills</h3>
-                        <p>AutoCAD • 3D Scanning • Town Planning Applications</p>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We provide precise topographic surveys to capture natural and built features of your site, including elevations, contours, vegetation, and structures.</p>
+                            <p>Using <strong>GNSS, total stations, drones, and LiDAR</strong>, we deliver high-resolution data and contour maps tailored to your requirements.</p>
+                            <p>Deliverables in <strong>CAD, GIS, and PDF</strong> formats ready for integration into your designs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Town Planning Services</h3>
+                            <p class="service-summary">SPLUMA applications, rezoning, and land use compliance</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Full range of <strong>SPLUMA</strong> applications including subdivisions, consolidations, rezoning, consent use, and exemptions.</p>
+                            <p>We liaise with municipalities to ensure statutory compliance and prepare all supporting documentation professionally.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Township Surveys</h3>
+                            <p class="service-summary">Township establishment and Surveyor-General registration</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Comprehensive township survey services for new township establishment and registration with the Surveyor-General.</p>
+                            <p>We prepare <strong>General Plans</strong> and ensure all cadastral boundaries, erven, roads, and open spaces are accurately surveyed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Land Rights</h3>
+                            <p class="service-summary">Subdivisions, consolidations, and boundary determinations</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Services include:</p>
+                            <ul>
+                                <li>Subdivision and consolidation surveys</li>
+                                <li>Beacon relocations and boundary determinations</li>
+                                <li>Servitude and lease area surveys</li>
+                                <li>Sectional title surveys</li>
+                                <li>Diagram and General Plan preparation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Mine Surveys</h3>
+                            <p class="service-summary">Surface and underground mining operations support</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Precise mine surveying for surface and underground operations from exploration to closure.</p>
+                            <ul>
+                                <li>Open-pit and underground surveys</li>
+                                <li>Volume calculations and stockpile measurements</li>
+                                <li>Drill and blast design support</li>
+                                <li>Compliance surveys for DMRE statutory reporting</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,32 +360,33 @@
             <div class="section">
                 <h2>Get In Touch</h2>
                 <div class="contact-info">
-                    <div class="contact-item">
-                        📞 <strong>Phone:</strong> <a href="tel:+27840772828">084 077 2828</a>
-                    </div>
-                    <div class="contact-item">
-                        ✉️ <strong>Email:</strong> <a href="mailto:sphethefirst@gmail.com">sphethefirst@gmail.com</a>
-                    </div>
-                    <div class="contact-item">
-                        📍 <strong>Location:</strong> Gauteng, Pretoria
-                    </div>
-                    <div class="contact-item">
-                        🕐 <strong>Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM
-                    </div>
-                    <div class="contact-item">
-                        <a href="https://www.linkedin.com/in/wiseman-mabaso-53776a178/" target="_blank" class="linkedin-link">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                            Connect on LinkedIn
-                        </a>
-                    </div>
+                    <div class="contact-item">📞 <strong>Phone:</strong> <a href="tel:+27840772828">084 077 2828</a></div>
+                    <div class="contact-item">✉️ <strong>Email:</strong> <a href="mailto:sphethefirst@gmail.com">sphethefirst@gmail.com</a></div>
+                    <div class="contact-item">📍 <strong>Location:</strong> Gauteng, Pretoria</div>
+                    <center><a href="mailto:sphethefirst@gmail.com" class="contact-btn">Request a Quote</a></center>
                 </div>
-                <center>
-                    <a href="mailto:sphethefirst@gmail.com" class="contact-btn">Request a Quote</a>
-                </center>
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const isActive = item.classList.contains('active');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+                acc.querySelector('.accordion-content').style.maxHeight = null;
+            });
+            
+            // Open clicked accordion if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+    </script>
 </body>
 </html>
