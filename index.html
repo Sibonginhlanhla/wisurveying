@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Aven Land Surveys - Tabbed</title>
+    <title>South Aven Land Surveys - Grid Modal</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             min-height: 100vh;
-            padding: 0;
         }
 
         .container {
@@ -52,19 +51,12 @@
             background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
             color: white;
             padding: 40px 60px;
-            position: relative;
         }
 
         .fun-fact-title {
             font-size: 1.5em;
             font-weight: bold;
             margin-bottom: 15px;
-        }
-
-        .fun-fact p {
-            line-height: 1.8;
-            font-size: 1.1em;
-            max-width: 1200px;
         }
 
         .content {
@@ -92,81 +84,171 @@
             margin-bottom: 15px;
         }
 
-        /* Service Tabs */
-        .service-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #e0e0e0;
-            padding-bottom: 10px;
+        /* Service Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .tab-button {
-            background: transparent;
-            border: none;
-            padding: 15px 25px;
-            font-size: 1.05em;
-            font-weight: 600;
-            color: #666;
+        .service-grid-item {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            padding: 35px 30px;
+            border-radius: 15px;
+            border: 3px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -13px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .tab-button:hover {
-            color: #8bc34a;
+        .service-grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #8bc34a 0%, #9ccc65 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .tab-button.active {
-            color: #8bc34a;
-            border-bottom-color: #8bc34a;
+        .service-grid-item:hover {
+            border-color: #8bc34a;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(139, 195, 74, 0.3);
         }
 
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
+        .service-grid-item:hover::before {
+            transform: scaleX(1);
         }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .service-detail {
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid #8bc34a;
-        }
-
-        .service-detail h3 {
-            color: #1a1a1a;
-            font-size: 1.6em;
+        .service-icon {
+            font-size: 3em;
             margin-bottom: 15px;
         }
 
-        .service-detail p {
+        .service-grid-item h3 {
+            color: #1a1a1a;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+        }
+
+        .service-grid-item p {
+            color: #777;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .learn-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: #8bc34a;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-header h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-body p {
             color: #555;
             line-height: 1.8;
             font-size: 1.05em;
             margin-bottom: 15px;
         }
 
-        .service-detail ul {
+        .modal-body ul {
             margin: 15px 0;
             padding-left: 25px;
         }
 
-        .service-detail ul li {
+        .modal-body ul li {
             color: #555;
             line-height: 1.8;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        .modal-body ul li strong {
+            color: #8bc34a;
         }
 
         .contact-info {
@@ -204,20 +286,17 @@
                 padding: 30px 20px;
             }
             
-            .service-tabs {
-                flex-direction: column;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
             
-            .tab-button {
-                text-align: left;
-                border-bottom: none;
-                border-left: 3px solid transparent;
-                padding-left: 15px;
+            .modal-content {
+                width: 95%;
             }
             
-            .tab-button.active {
-                border-left-color: #8bc34a;
-                border-bottom-color: transparent;
+            .modal-header,
+            .modal-body {
+                padding: 25px 20px;
             }
         }
     </style>
@@ -233,92 +312,61 @@
 
         <div class="fun-fact">
             <div class="fun-fact-title">Did You Know?</div>
-            <p>Ey! did you know that land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years! The Egyptians used basic geometry to re-establish farm boundaries after the Nile River's annual floods, and even the Great Pyramid of Giza owes its precise alignment to early surveying methods.</p>
+            <p>Land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years!</p>
         </div>
 
         <div class="content">
             <div class="section">
                 <h2>About</h2>
-                <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data data that supports construction, planning, design, development, and decision-making.</p>
-                <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>, offering spatial insight and services to support throughout every stage of a project - from concept to completion.</p>
+                <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data.</p>
+                <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>.</p>
             </div>
 
             <div class="section">
                 <h2>Services Offered</h2>
+                <p class="about-text" style="margin-bottom: 25px;">Click on any service to learn more about what we offer</p>
                 
-                <div class="service-tabs">
-                    <button class="tab-button active" onclick="openTab(event, 'construction')">Construction Surveys</button>
-                    <button class="tab-button" onclick="openTab(event, 'topographic')">Topographic Surveys</button>
-                    <button class="tab-button" onclick="openTab(event, 'townplanning')">Town Planning</button>
-                    <button class="tab-button" onclick="openTab(event, 'township')">Township Surveys</button>
-                    <button class="tab-button" onclick="openTab(event, 'landrights')">Land Rights</button>
-                    <button class="tab-button" onclick="openTab(event, 'mine')">Mine Surveys</button>
-                </div>
-
-                <div id="construction" class="tab-content active">
-                    <div class="service-detail">
+                <div class="services-grid">
+                    <div class="service-grid-item" onclick="openModal('construction')">
+                        <div class="service-icon">🏗️</div>
                         <h3>Construction Surveys</h3>
-                        <p>Construction surveying involves transferring the design data from plans onto the ground so that builders and contractors can construct infrastructure accurately structures, such as buildings, roads,
-columns, foundations, and utilities.</p>
-                        <ul>
-                            <li><strong>Setting out:</strong> Marking exact positions of structures</li>
-                            <li><strong>Level control:</strong> Establishing reference points for elevations</li>
-                            <li><strong>Alignment checks:</strong> Verifying correct location and orientation</li>
-                            <li><strong>As-built surveys:</strong> Recording completed work</li>
-                            <li><strong>Monitoring:</strong> Measuring movement or settlement</li>
-                        </ul>
+                        <p>Setting out, level control, alignment checks, and as-built surveys for accurate infrastructure construction.</p>
+                        <span class="learn-more">Learn More →</span>
                     </div>
-                </div>
 
-                <div id="topographic" class="tab-content">
-                    <div class="service-detail">
+                    <div class="service-grid-item" onclick="openModal('topographic')">
+                        <div class="service-icon">🗺️</div>
                         <h3>Topographic Surveys</h3>
-                        <p>We provide precise topographic surveys to capture natural and built features of your site, including elevations, contours, vegetation, and structures.</p>
-                        <p>Using <strong>GNSS, total stations, drones, and LiDAR</strong>, we deliver high-resolution data and contour maps.</p>
-                        <p>Deliverables in <strong>CAD, GIS, and PDF</strong> formats.</p>
+                        <p>High-resolution terrain mapping using GNSS, drones, and LiDAR technology for planning and design.</p>
+                        <span class="learn-more">Learn More →</span>
                     </div>
-                </div>
 
-                <div id="townplanning" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Town Planning Services</h3>
-                        <p>Full range of <strong>SPLUMA</strong> applications including subdivisions, consolidations, rezoning, and consent use.</p>
-                        <p>We liaise with municipalities to ensure statutory compliance and prepare all supporting documentation professionally.</p>
+                    <div class="service-grid-item" onclick="openModal('townplanning')">
+                        <div class="service-icon">📋</div>
+                        <h3>Town Planning</h3>
+                        <p>SPLUMA applications, rezoning, subdivisions, and land use compliance services.</p>
+                        <span class="learn-more">Learn More →</span>
                     </div>
-                </div>
 
-                <div id="township" class="tab-content">
-                    <div class="service-detail">
+                    <div class="service-grid-item" onclick="openModal('township')">
+                        <div class="service-icon">🏘️</div>
                         <h3>Township Surveys</h3>
-                        <p>Comprehensive township survey services for new township establishment and registration with the Surveyor-General.</p>
-                        <p>We prepare <strong>General Plans</strong> and ensure all cadastral boundaries are accurately surveyed.</p>
+                        <p>Comprehensive township establishment and Surveyor-General registration services.</p>
+                        <span class="learn-more">Learn More →</span>
                     </div>
-                </div>
 
-                <div id="landrights" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Land Rights (Subdivisions and Consolidations)</h3>
-                        <p>Services include:</p>
-                        <ul>
-                            <li>Subdivision and consolidation surveys</li>
-                            <li>Beacon relocations and boundary determinations</li>
-                            <li>Servitude and lease area surveys</li>
-                            <li>Sectional title surveys</li>
-                            <li>Diagram and General Plan preparation</li>
-                        </ul>
+                    <div class="service-grid-item" onclick="openModal('landrights')">
+                        <div class="service-icon">📐</div>
+                        <h3>Land Rights</h3>
+                        <p>Subdivisions, consolidations, boundary determinations, and cadastral surveys.</p>
+                        <span class="learn-more">Learn More →</span>
                     </div>
-                </div>
 
-                <div id="mine" class="tab-content">
-                    <div class="service-detail">
+                    <div class="service-grid-item" onclick="openModal('mine')">
+                        <div class="service-icon">⛏️</div>
                         <h3>Mine Surveys</h3>
-                        <p>Precise mine surveying for surface and underground operations from exploration to closure.</p>
-                        <ul>
-                            <li>Open-pit and underground surveys</li>
-                            <li>Volume calculations and stockpile measurements</li>
-                            <li>Drill and blast design support</li>
-                            <li>Compliance surveys for statutory reporting</li>
-                        </ul>
+                        <p>Surface and underground mining surveys with DMRE compliance and 3D scanning.</p>
+                        <span class="learn-more">Learn More →</span>
                     </div>
                 </div>
             </div>
@@ -329,28 +377,133 @@ columns, foundations, and utilities.</p>
                     <div class="contact-item">📞 <strong>Phone:</strong> <a href="tel:+27840772828">084 077 2828</a></div>
                     <div class="contact-item">✉️ <strong>Email:</strong> <a href="mailto:sphethefirst@gmail.com">sphethefirst@gmail.com</a></div>
                     <div class="contact-item">📍 <strong>Location:</strong> Gauteng, Pretoria</div>
+                    <center><a href="mailto:sphethefirst@gmail.com" class="contact-btn">Request a Quote</a></center>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div id="serviceModal" class="modal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header" id="modalHeader">
+                <button class="close-btn" onclick="closeModal()">×</button>
+                <h3 id="modalTitle"></h3>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
     <script>
-        function openTab(evt, tabName) {
-            var i, tabContent, tabButtons;
-            
-            tabContent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove("active");
+        const serviceContent = {
+            construction: {
+                title: 'Construction Surveys',
+                content: `
+                    <p>Construction surveying involves transferring the design data from plans onto the ground so that builders and contractors can construct buildings, roads, bridges, pipelines, and other infrastructure accurately according to specifications.</p>
+                    <ul>
+                        <li><strong>Setting out:</strong> Marking the exact positions of structures, such as buildings, roads, columns, foundations, and utilities.</li>
+                        <li><strong>Level control:</strong> Establishing reference points (benchmarks) to ensure correct elevations and gradients.</li>
+                        <li><strong>Alignment checks:</strong> Verifying that structures are built in the right location, alignment, and orientation.</li>
+                        <li><strong>As-built surveys:</strong> Measuring and recording the completed work to confirm that construction matches the design - often required for project handover.</li>
+                        <li><strong>Monitoring:</strong> Measuring movement, deformation, or settlement of structures during or after construction.</li>
+                    </ul>
+                `
+            },
+            topographic: {
+                title: 'Topographic Surveys',
+                content: `
+                    <p>We provide precise <strong>topographic surveys</strong> to capture the natural and built features of your site. Our surveys detail ground elevations, contours, vegetation, buildings, roads, and other visible improvements - giving you an accurate foundation for planning, design, and development.</p>
+                    <p>Using advanced surveying technologies such as <strong>GNSS (GPS), total stations, drones, and LiDAR scanners</strong>, we deliver high-resolution data and detailed contour maps tailored to your project requirements.</p>
+                    <p>Whether you're designing infrastructure, preparing site plans, or managing construction, our topographic surveys give you the spatial accuracy and clarity needed to make informed decisions and streamline your project workflow.</p>
+                    <p>Deliverables are provided in industry-standard formats including <strong>CAD, GIS, and PDF</strong>, ready for direct integration into your engineering or architectural designs.</p>
+                `
+            },
+            townplanning: {
+                title: 'Town Planning Services',
+                content: `
+                    <p>We assist clients with the full range of <strong>SPLUMA (Spatial Planning and Land Use Management Act)</strong> applications and related town planning processes required for property development and land use compliance.</p>
+                    <p>Our services include the preparation and submission of <strong>SPLUMA applications</strong>, <strong>subdivision and consolidation approvals</strong>, <strong>rezoning</strong>, <strong>consent use</strong>, and <strong>SPLUMA exemptions</strong> where applicable. We liaise directly with municipalities and relevant authorities to ensure that your land development projects meet all statutory planning and land use requirements.</p>
+                    <p>Whether you're a <strong>developer, architect, surveyor, or property owner</strong>, we help streamline the application process, ensuring that all supporting documentation - including survey diagrams, site development plans, and motivation reports - are accurately prepared and professionally lodged.</p>
+                    <p>Our goal is to help you achieve <strong>legal land development rights</strong> efficiently and with full regulatory compliance.</p>
+                `
+            },
+            township: {
+                title: 'Township Surveys',
+                content: `
+                    <p>We provide comprehensive <strong>township survey services</strong> to support the establishment and registration of new townships in accordance with the requirements of the <strong>Surveyor-General</strong> and relevant planning legislation.</p>
+                    <p>Our team works closely with <strong>town planners, developers, engineers, and municipal authorities</strong> to ensure that all cadastral boundaries, erven, public roads, and open spaces are accurately surveyed and correctly represented on the approved township layout.</p>
+                    <p>Using advanced <strong>GNSS, total stations, and CAD systems</strong>, we prepare and submit <strong>General Plans</strong> and supporting documentation to the <strong>Surveyor-General's office</strong> for approval and registration.</p>
+                    <p>Whether you are developing a <strong>residential, commercial, or mixed-use township</strong>, we ensure precision, compliance, and timely delivery of all survey components required for township establishment and property registration.</p>
+                `
+            },
+            landrights: {
+                title: 'Land Rights (Subdivisions and Consolidations)',
+                content: `
+                    <p>Our work ensures the accurate delineation of property boundaries and the secure registration of land parcels within the <strong>Surveyor-General's</strong> cadastral system.</p>
+                    <p>Our services cover a wide range of cadastral projects, including:</p>
+                    <ul>
+                        <li>Subdivision and consolidation surveys</li>
+                        <li>Beacon relocations and boundary determinations</li>
+                        <li>Servitude and lease area surveys</li>
+                        <li>Sectional title and farm subdivision surveys</li>
+                        <li>Diagram and General Plan preparation and submission</li>
+                    </ul>
+                    <p>We work closely with <strong>landowners, developers, attorneys, conveyancers, and government institutions</strong> to ensure that every survey meets legal requirements and supports the lawful transfer, registration, or development of land.</p>
+                    <p>Our commitment is to provide <strong>accurate, compliant, and reliable cadastral data</strong> that protects your property rights and supports sustainable land development.</p>
+                `
+            },
+            mine: {
+                title: 'Mine Surveys',
+                content: `
+                    <p>We provide precise and reliable <strong>mine surveying services</strong> to support both surface and underground mining operations throughout all stages of development - from exploration to production and closure.</p>
+                    <p>Our mine survey services include:</p>
+                    <ul>
+                        <li>Open-pit and underground surveys</li>
+                        <li>Volume calculations and stockpile measurements</li>
+                        <li>Drill and blast design support</li>
+                        <li>Underground control network establishment</li>
+                        <li>Stope and face mapping</li>
+                        <li>Aerial and LiDAR surveys for mine planning and monitoring</li>
+                        <li>Compliance surveys for statutory plans and reporting</li>
+                    </ul>
+                    <p>Using advanced <strong>GNSS, total stations, 3D laser scanners, and drone technology</strong>, we deliver accurate spatial data to assist in mine planning, safety monitoring, and production management.</p>
+                    <p>We ensure full compliance with the <strong>Mine Health and Safety Act</strong> and <strong>Department of Mineral Resources and Energy (DMRE)</strong> requirements, providing survey deliverables that integrate seamlessly with your mine planning software.</p>
+                    <p>Our goal is to help you achieve <strong>operational efficiency, regulatory compliance, and spatial accuracy</strong> across all mining activities.</p>
+                `
             }
+        };
+
+        function openModal(serviceId) {
+            const modal = document.getElementById('serviceModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
             
-            tabButtons = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove("active");
-            }
+            const service = serviceContent[serviceId];
+            modalTitle.textContent = service.title;
+            modalBody.innerHTML = service.content;
             
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOutsideClick(event) {
+            if (event.target.id === 'serviceModal') {
+                closeModal();
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
