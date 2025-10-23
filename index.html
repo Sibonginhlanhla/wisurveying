@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Aven Land Surveys - Tabbed</title>
+    <title>South Aven Land Surveys - Accordion</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             min-height: 100vh;
-            padding: 0;
         }
 
         .container {
@@ -52,19 +51,12 @@
             background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
             color: white;
             padding: 40px 60px;
-            position: relative;
         }
 
         .fun-fact-title {
             font-size: 1.5em;
             font-weight: bold;
             margin-bottom: 15px;
-        }
-
-        .fun-fact p {
-            line-height: 1.8;
-            font-size: 1.1em;
-            max-width: 1200px;
         }
 
         .content {
@@ -92,81 +84,93 @@
             margin-bottom: 15px;
         }
 
-        /* Service Tabs */
-        .service-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #e0e0e0;
-            padding-bottom: 10px;
-        }
-
-        .tab-button {
-            background: transparent;
-            border: none;
-            padding: 15px 25px;
-            font-size: 1.05em;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -13px;
-        }
-
-        .tab-button:hover {
-            color: #8bc34a;
-        }
-
-        .tab-button.active {
-            color: #8bc34a;
-            border-bottom-color: #8bc34a;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .service-detail {
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 12px;
-            border-left: 4px solid #8bc34a;
-        }
-
-        .service-detail h3 {
-            color: #1a1a1a;
-            font-size: 1.6em;
+        /* Accordion Styles */
+        .accordion-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .service-detail p {
+        .accordion-item:hover {
+            border-color: #8bc34a;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.2);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .accordion-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 30px;
+            background: #f9f9f9;
+            border-top: 2px solid #8bc34a;
+        }
+
+        .accordion-content p {
             color: #555;
             line-height: 1.8;
             font-size: 1.05em;
             margin-bottom: 15px;
         }
 
-        .service-detail ul {
+        .accordion-content ul {
             margin: 15px 0;
             padding-left: 25px;
         }
 
-        .service-detail ul li {
+        .accordion-content ul li {
             color: #555;
             line-height: 1.8;
             margin-bottom: 10px;
+        }
+
+        .service-summary {
+            color: #777;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .accordion-item.active .service-summary {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .contact-info {
@@ -204,20 +208,12 @@
                 padding: 30px 20px;
             }
             
-            .service-tabs {
-                flex-direction: column;
+            .accordion-header {
+                padding: 20px;
             }
             
-            .tab-button {
-                text-align: left;
-                border-bottom: none;
-                border-left: 3px solid transparent;
-                padding-left: 15px;
-            }
-            
-            .tab-button.active {
-                border-left-color: #8bc34a;
-                border-bottom-color: transparent;
+            .accordion-content-inner {
+                padding: 20px;
             }
         }
     </style>
@@ -233,92 +229,130 @@
 
         <div class="fun-fact">
             <div class="fun-fact-title">Did You Know?</div>
-            <p>Ey! did you know that land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years! The Egyptians used basic geometry to re-establish farm boundaries after the Nile River's annual floods, and even the Great Pyramid of Giza owes its precise alignment to early surveying methods.</p>
+            <p>Land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years!</p>
         </div>
 
         <div class="content">
             <div class="section">
                 <h2>About</h2>
-                <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data data that supports construction, planning, design, development, and decision-making.</p>
-                <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>, offering spatial insight and services to support throughout every stage of a project - from concept to completion.</p>
+                <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data.</p>
+                <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>.</p>
             </div>
 
             <div class="section">
                 <h2>Services Offered</h2>
                 
-                <div class="service-tabs">
-                    <button class="tab-button active" onclick="openTab(event, 'construction')">Construction Surveys</button>
-                    <button class="tab-button" onclick="openTab(event, 'topographic')">Topographic Surveys</button>
-                    <button class="tab-button" onclick="openTab(event, 'townplanning')">Town Planning</button>
-                    <button class="tab-button" onclick="openTab(event, 'township')">Township Surveys</button>
-                    <button class="tab-button" onclick="openTab(event, 'landrights')">Land Rights</button>
-                    <button class="tab-button" onclick="openTab(event, 'mine')">Mine Surveys</button>
-                </div>
-
-                <div id="construction" class="tab-content active">
-                    <div class="service-detail">
-                        <h3>Construction Surveys</h3>
-                        <p>Construction surveying involves transferring the design data from plans onto the ground so that builders and contractors can construct infrastructure accurately structures, such as buildings, roads,
-columns, foundations, and utilities.</p>
-                        <ul>
-                            <li><strong>Setting out:</strong> Marking exact positions of structures</li>
-                            <li><strong>Level control:</strong> Establishing reference points for elevations</li>
-                            <li><strong>Alignment checks:</strong> Verifying correct location and orientation</li>
-                            <li><strong>As-built surveys:</strong> Recording completed work</li>
-                            <li><strong>Monitoring:</strong> Measuring movement or settlement</li>
-                        </ul>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Construction Surveys</h3>
+                            <p class="service-summary">Setting out, level control, and as-built surveys</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Construction surveying involves transferring the design data from plans onto the ground so that builders and contractors can construct infrastructure accurately.</p>
+                            <ul>
+                                <li><strong>Setting out:</strong> Marking exact positions of structures</li>
+                                <li><strong>Level control:</strong> Establishing reference points for elevations</li>
+                                <li><strong>Alignment checks:</strong> Verifying correct location and orientation</li>
+                                <li><strong>As-built surveys:</strong> Recording completed work</li>
+                                <li><strong>Monitoring:</strong> Measuring movement or settlement</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div id="topographic" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Topographic Surveys</h3>
-                        <p>We provide precise topographic surveys to capture natural and built features of your site, including elevations, contours, vegetation, and structures.</p>
-                        <p>Using <strong>GNSS, total stations, drones, and LiDAR</strong>, we deliver high-resolution data and contour maps.</p>
-                        <p>Deliverables in <strong>CAD, GIS, and PDF</strong> formats.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Topographic Surveys</h3>
+                            <p class="service-summary">High-resolution terrain data using GNSS, drones, and LiDAR</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>We provide precise topographic surveys to capture natural and built features of your site, including elevations, contours, vegetation, and structures.</p>
+                            <p>Using <strong>GNSS, total stations, drones, and LiDAR</strong>, we deliver high-resolution data and contour maps tailored to your requirements.</p>
+                            <p>Deliverables in <strong>CAD, GIS, and PDF</strong> formats ready for integration into your designs.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div id="townplanning" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Town Planning Services</h3>
-                        <p>Full range of <strong>SPLUMA</strong> applications including subdivisions, consolidations, rezoning, and consent use.</p>
-                        <p>We liaise with municipalities to ensure statutory compliance and prepare all supporting documentation professionally.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Town Planning Services</h3>
+                            <p class="service-summary">SPLUMA applications, rezoning, and land use compliance</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Full range of <strong>SPLUMA</strong> applications including subdivisions, consolidations, rezoning, consent use, and exemptions.</p>
+                            <p>We liaise with municipalities to ensure statutory compliance and prepare all supporting documentation professionally.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div id="township" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Township Surveys</h3>
-                        <p>Comprehensive township survey services for new township establishment and registration with the Surveyor-General.</p>
-                        <p>We prepare <strong>General Plans</strong> and ensure all cadastral boundaries are accurately surveyed.</p>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Township Surveys</h3>
+                            <p class="service-summary">Township establishment and Surveyor-General registration</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Comprehensive township survey services for new township establishment and registration with the Surveyor-General.</p>
+                            <p>We prepare <strong>General Plans</strong> and ensure all cadastral boundaries, erven, roads, and open spaces are accurately surveyed.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div id="landrights" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Land Rights (Subdivisions and Consolidations)</h3>
-                        <p>Services include:</p>
-                        <ul>
-                            <li>Subdivision and consolidation surveys</li>
-                            <li>Beacon relocations and boundary determinations</li>
-                            <li>Servitude and lease area surveys</li>
-                            <li>Sectional title surveys</li>
-                            <li>Diagram and General Plan preparation</li>
-                        </ul>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Land Rights</h3>
+                            <p class="service-summary">Subdivisions, consolidations, and boundary determinations</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Services include:</p>
+                            <ul>
+                                <li>Subdivision and consolidation surveys</li>
+                                <li>Beacon relocations and boundary determinations</li>
+                                <li>Servitude and lease area surveys</li>
+                                <li>Sectional title surveys</li>
+                                <li>Diagram and General Plan preparation</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div id="mine" class="tab-content">
-                    <div class="service-detail">
-                        <h3>Mine Surveys</h3>
-                        <p>Precise mine surveying for surface and underground operations from exploration to closure.</p>
-                        <ul>
-                            <li>Open-pit and underground surveys</li>
-                            <li>Volume calculations and stockpile measurements</li>
-                            <li>Drill and blast design support</li>
-                            <li>Compliance surveys for statutory reporting</li>
-                        </ul>
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Mine Surveys</h3>
+                            <p class="service-summary">Surface and underground mining operations support</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Precise mine surveying for surface and underground operations from exploration to closure.</p>
+                            <ul>
+                                <li>Open-pit and underground surveys</li>
+                                <li>Volume calculations and stockpile measurements</li>
+                                <li>Drill and blast design support</li>
+                                <li>Compliance surveys for DMRE statutory reporting</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -329,27 +363,29 @@ columns, foundations, and utilities.</p>
                     <div class="contact-item">📞 <strong>Phone:</strong> <a href="tel:+27840772828">084 077 2828</a></div>
                     <div class="contact-item">✉️ <strong>Email:</strong> <a href="mailto:sphethefirst@gmail.com">sphethefirst@gmail.com</a></div>
                     <div class="contact-item">📍 <strong>Location:</strong> Gauteng, Pretoria</div>
+                    <center><a href="mailto:sphethefirst@gmail.com" class="contact-btn">Request a Quote</a></center>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function openTab(evt, tabName) {
-            var i, tabContent, tabButtons;
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const isActive = item.classList.contains('active');
             
-            tabContent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabContent.length; i++) {
-                tabContent[i].classList.remove("active");
+            // Close all accordions
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                acc.classList.remove('active');
+                acc.querySelector('.accordion-content').style.maxHeight = null;
+            });
+            
+            // Open clicked accordion if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
             }
-            
-            tabButtons = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove("active");
-            }
-            
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
         }
     </script>
 </body>
