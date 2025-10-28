@@ -8,6 +8,21 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     min-height: 100vh;
+    
+}
+
+#aboutsec {
+    background-image: url("pics/background.png");
+    background-size: cover;
+    padding: 10px;
+}
+
+#aboutsec h2 {
+    color: white;
+}
+
+#aboutsec p {
+    color: white;
 }
 
 .container {
@@ -35,21 +50,11 @@ body {
 }
 
 /* Button Styling */
-.header button {
-    padding: 10px 20px;
-    background-color: #8bc34a; /* Green color matching the border */
+.header a {
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    text-decoration: none;
+    
 }
-
-.header button:hover {
-    background-color: #7cb342; /* Slightly darker shade on hover */
-}
-
 /* LinkedIn icon styling */
 .linkedin-icon {
     color: #0077b5; /* LinkedIn blue */
@@ -67,7 +72,7 @@ body {
 
 
 .logo-container {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto 20px;
 }
 
