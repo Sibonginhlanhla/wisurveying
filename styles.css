@@ -21,10 +21,54 @@ body {
     padding: 60px 40px;
     text-align: center;
     border-bottom: 4px solid #8bc34a;
+    background-image: url("pics/logo4.png");
+    background-size: cover;
+    position: relative;
+    height: 350px;
 }
 
+.header div:last-child {
+    position: absolute;
+    top: 20px; /* Adjust as needed to fine-tune the spacing from the top */
+    right: 40px; /* Adjust to match the padding on the right */
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+}
+
+/* Button Styling */
+.header button {
+    padding: 10px 20px;
+    background-color: #8bc34a; /* Green color matching the border */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.header button:hover {
+    background-color: #7cb342; /* Slightly darker shade on hover */
+}
+
+/* LinkedIn icon styling */
+.linkedin-icon {
+    color: #0077b5; /* LinkedIn blue */
+    font-size: 24px; /* Adjust size as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.linkedin-icon:hover {
+    color: #005682; /* Darker blue on hover */
+}
+
+
 .logo-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 20px;
 }
 
@@ -36,7 +80,7 @@ body {
 
 .tagline {
     font-size: 1.5em;
-    color: #555;
+    color: white;
     font-weight: 500;
 }
 

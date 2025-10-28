@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>South Aven Land Surveys - Accordion</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo-container">
-                <img src="logo.png" alt="South Aven Land Surveys">
+            <!--div class="logo-container">
+                <img src="pics/logo.png" alt="South Aven Land Surveys">
             </div>
-            <p class="tagline">Professional Land Surveying Services</p>
+            <p class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</p-->
+            <div>
+                <a href="#servicesec"></href><button>Services</button></a>
+                <a href="#aboutsec"><button>About</button></a>
+                <a href="#contactsec"><button>Contacts</button></a>
+                <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
         </div>
 
         <div class="fun-fact">
@@ -21,14 +30,40 @@
         </div>
 
         <div class="content">
-            <div class="section">
+            <div id="aboutsec" class="section">
                 <h2>About</h2>
                 <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data that supports construction, planning, design, development, and decision-making.</p>
                 <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>, offering spatial insight and services to support throughout every stage of a project - from concept to completion.</p>
             </div>
 
             <div class="section">
-                <h2>Services</h2>
+                <h2 id="servicesec">Services</h2>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <div>
+                            <h3>Land Rights</h3>
+                            <p class="service-summary">Subdivisions, consolidations, and boundary determinations</p>
+                        </div>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Our work ensures the accurate delineation of property boundaries and the secure registration of land parcels within the <strong>Surveyor-General's</strong> cadastral system.</p>
+                            <p>Our services cover a wide range of cadastral projects, including:</p>
+                            <ul>
+                                <li>Subdivision and consolidation surveys</li>
+                                <li>Beacon relocations and boundary determinations</li>
+                                <li>Servitude and lease area surveys</li>
+                                <li>Sectional title and farm subdivision surveys</li>
+                                <li>Diagram and General Plan preparation and submission</li>
+                            </ul>
+                            <p>We work closely with <strong>landowners, developers, attorneys, conveyancers, and government institutions</strong> to ensure that every survey meets legal requirements and supports the lawful transfer, registration, or development of land.</p>
+                            <p>Our commitment is to provide <strong>accurate, compliant, and reliable cadastral data</strong> that protects your property rights and supports sustainable land development.</p>
+                        </div>
+                        
+                    </div>
+                </div>
                 
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
@@ -109,31 +144,6 @@
                 <div class="accordion-item">
                     <div class="accordion-header" onclick="toggleAccordion(this)">
                         <div>
-                            <h3>Land Rights</h3>
-                            <p class="service-summary">Subdivisions, consolidations, and boundary determinations</p>
-                        </div>
-                        <span class="accordion-icon">▼</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="accordion-content-inner">
-                            <p>Our work ensures the accurate delineation of property boundaries and the secure registration of land parcels within the <strong>Surveyor-General's</strong> cadastral system.</p>
-                            <p>Our services cover a wide range of cadastral projects, including:</p>
-                            <ul>
-                                <li>Subdivision and consolidation surveys</li>
-                                <li>Beacon relocations and boundary determinations</li>
-                                <li>Servitude and lease area surveys</li>
-                                <li>Sectional title and farm subdivision surveys</li>
-                                <li>Diagram and General Plan preparation and submission</li>
-                            </ul>
-                            <p>We work closely with <strong>landowners, developers, attorneys, conveyancers, and government institutions</strong> to ensure that every survey meets legal requirements and supports the lawful transfer, registration, or development of land.</p>
-                            <p>Our commitment is to provide <strong>accurate, compliant, and reliable cadastral data</strong> that protects your property rights and supports sustainable land development.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header" onclick="toggleAccordion(this)">
-                        <div>
                             <h3>Mine Surveys</h3>
                             <p class="service-summary">Surface and underground mining operations support</p>
                         </div>
@@ -160,12 +170,12 @@
                 </div>
             </div>
 
-            <div class="section">
-                <h2>Get In Touch</h2>
+            <div id="contactsec" class="section">
+                <h2>Contacts</h2>
                 <div class="contact-info">
-                    <div class="contact-item">📞 <strong>Phone:</strong> <a href="tel:+27840772828">084 077 2828</a></div>
-                    <div class="contact-item">✉️ <strong>Email:</strong> <a href="mailto:sphethefirst@gmail.com">sphethefirst@gmail.com</a></div>
-                    <div class="contact-item">📍 <strong>Location:</strong> Gauteng, Pretoria</div>
+                    <div class="contact-item">📞 <strong>Phone:</strong> <a href="tel:082 209 3129">082 209 3129</a></div>
+                    <div class="contact-item">✉️ <strong>Email:</strong> <a href="mailto:sage.mbulazi@southaven.co.za">sage.mbulazi@southaven.co.za</a></div>
+                    <div class="contact-item">📍 <strong>Location:</strong> Unit 4, First Floor, K101 Office Park Capital Hill Commercial Estate Midrand</div>
                 </div>
             </div>
         </div>

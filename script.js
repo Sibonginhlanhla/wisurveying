@@ -14,4 +14,6 @@ function toggleAccordion(header) {
                 item.classList.add('active');
                 content.style.maxHeight = content.scrollHeight + 'px';
             }
-  }
+}
+
+
