@@ -11,17 +11,21 @@ body {
     
 }
 
-#aboutsec {
+.about-section {
     background-image: url("pics/background.png");
     background-size: cover;
-    padding: 10px;
+    padding: 40px 60px;
 }
 
-#aboutsec h2 {
+.about-section h2 {
     color: white;
+    font-size: 2em;
+    margin-bottom: 20px;
+    border-left: 5px solid #8bc34a;
+    padding-left: 20px;
 }
 
-#aboutsec p {
+.about-section p {
     color: white;
 }
 
