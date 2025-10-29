@@ -3,43 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>South Aven Land Surveys - Accordion</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>South Aven Land Surveys</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.98);
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Sticky Nav Bar - outside header for proper stickiness */
+        .nav-bar {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            align-items: center;
+            gap: 40px;
+            padding: 15px 40px;
+            background-image: url("pics/wh.png");
+            background-size: cover;
+            background-position: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-bar.scrolled {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 249, 249, 0.98) 100%);
+            background-image: none;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 4px solid #8bc34a;
+            grid-template-columns: auto 1fr;
+            padding: 12px 40px;
+        }
+
+        .logo-container-header {
+            max-width: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-bar.scrolled .logo-container-header {
+            max-width: 220px;
+        }
+
+        .logo-container-header img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 5px 15px rgba(139, 195, 74, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .logo-container-header:hover img {
+            filter: drop-shadow(0 8px 20px rgba(139, 195, 74, 0.5));
+            transform: scale(1.02);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #8bc34a;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #8bc34a;
+            transform: translateY(-2px);
+        }
+
+        .nav-bar.scrolled .nav-links a {
+            color: #2d2d2d;
+            font-weight: 600;
+        }
+
+        .nav-bar.scrolled .nav-links a:hover {
+            color: #8bc34a;
+        }
+
+        .linkedin-icon {
+            color: #0077b5;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .linkedin-icon:hover {
+            color: #005682;
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* Header section - now without nav */
+        .header {
+            background-image: url("pics/wh.png");
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid #8bc34a;
+        }
+
+        .tagline {
+            font-size: 1.8em;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            padding: 40px 40px 60px 40px;
+        }
+
+        .fun-fact {
+            background: white;
+            color: #1a1a1a;
+            padding: 40px 60px;
+        }
+
+        .fun-fact-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .about-section {
+            background-image: url("pics/background.png");
+            background-size: cover;
+            padding: 40px 60px;
+        }
+
+        .about-section h2 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #8bc34a;
+            padding-left: 20px;
+        }
+
+        .about-section p {
+            color: white;
+            line-height: 1.8;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            padding: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #1a1a1a;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #8bc34a;
+            padding-left: 20px;
+        }
+
+        .accordion-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            border-color: #8bc34a;
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.2);
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+        }
+
+        .accordion-header h3 {
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .service-summary {
+            color: #777;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+
+        .accordion-item.active .service-summary {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .accordion-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-item.active .accordion-header {
+            background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 30px;
+            background: #f9f9f9;
+            border-top: 2px solid #8bc34a;
+        }
+
+        .accordion-content p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        .accordion-content ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .accordion-content ul li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #8bc34a;
+        }
+
+        .contact-item {
+            margin: 18px 0;
+            font-size: 1.15em;
+        }
+
+        .contact-info a {
+            color: #8bc34a;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .nav-bar.scrolled {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-container-header {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .nav-bar.scrolled .logo-container-header {
+                max-width: 180px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9em;
+                justify-content: center;
+            }
+
+            .tagline {
+                font-size: 1.2em;
+                padding: 30px 20px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .accordion-header {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="sticky-nav">   
-        <div class="logo-container">    
-            <img src="pics/logo3.png" alt="South Aven Land Surveys">
-        </div>
-        <div class="nav-links">    
-            <a href="#servicesec">Services</a>
-            <a href="#aboutsec">About</a>
-            <a href="#contactsec">Contacts</a>
-            <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        </div>
-    </div>
     <div class="container">
-        <div class="header">
-            <div class="logo-container-header">
+        <!-- Nav bar is now OUTSIDE and BEFORE the header for proper stickiness -->
+        <div class="nav-bar" id="navbar">
+            <div class="logo-container-header" onclick="scrollToTop()">
                 <img src="pics/logo3.png" alt="South Aven Land Surveys">
             </div>
-            <p class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</p>
+            <div class="nav-links">    
+                <a href="#servicesec">Services</a>
+                <a href="#aboutsec">About</a>
+                <a href="#contactsec">Contacts</a>
+                <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
         </div>
+
+        <div class="header">
+            <div class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</div>
+        </div>
+
         <div class="fun-fact">
             <div class="fun-fact-title">Ey! Did You Know?</div>
             <p>Land surveying is one of the oldest professions in the world—evidence of land surveys has been found in ancient Egypt, dating back over 3,000 years! The Egyptians used basic geometry to re-establish farm boundaries after the Nile River's annual floods, and even the Great Pyramid of Giza owes its precise alignment to early surveying methods.</p>
         </div>
+
         <div id="aboutsec" class="about-section">
-                <h2>About</h2>
-                <p class="about-text">We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data that supports construction, planning, design, development, and decision-making.</p>
-                <p class="about-text">We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>, offering spatial insight and services to support throughout every stage of a project - from concept to completion.</p>
+            <h2>About</h2>
+            <p>We are a <strong>professional land surveying and geospatial solutions</strong> company committed to delivering accurate, reliable, and innovative spatial data that supports construction, planning, design, development, and decision-making.</p>
+            <p>We work closely with <strong>town planners, architects, civil engineers, developers, project managers, and site supervisors</strong>, offering spatial insight and services to support throughout every stage of a project - from concept to completion.</p>
         </div>
 
         <div class="content">
-            <div class="section" id="yz">
+            <div class="section">
                 <h2 id="servicesec">Services</h2>
 
                 <div class="accordion-item">
@@ -64,7 +404,6 @@
                             <p>We work closely with <strong>landowners, developers, attorneys, conveyancers, and government institutions</strong> to ensure that every survey meets legal requirements and supports the lawful transfer, registration, or development of land.</p>
                             <p>Our commitment is to provide <strong>accurate, compliant, and reliable cadastral data</strong> that protects your property rights and supports sustainable land development.</p>
                         </div>
-                        
                     </div>
                 </div>
                 
@@ -184,6 +523,44 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function toggleAccordion(element) {
+            const accordionItem = element.closest('.accordion-item');
+            const accordionContent = accordionItem.querySelector('.accordion-content');
+            
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                if (item !== accordionItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.accordion-content').style.maxHeight = null;
+                }
+            });
+            
+            accordionItem.classList.toggle('active');
+            
+            if (accordionItem.classList.contains('active')) {
+                accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+            } else {
+                accordionContent.style.maxHeight = null;
+            }
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Add scrolled class to navbar when user scrolls
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
