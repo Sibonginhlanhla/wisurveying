@@ -33,7 +33,6 @@ body {
     background: rgba(255, 255, 255, 0.98);
     width: 100%;
     min-height: 100vh;
-    padding-top: 70px;
 }
 
 .header {
@@ -48,7 +47,7 @@ body {
 
 .sticky-nav {
     position: fixed;
-    top: 0;
+    top: -100px;
     left: 0;
     right: 0;
     z-index: 1000;
@@ -60,10 +59,15 @@ body {
     align-items: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid #8bc34a;
+    transition: top 0.3s ease;
+}
+
+.sticky-nav.show {
+    top: 0;
 }
 
 .sticky-nav .logo-container {
-    max-width: 250px;  
+    max-width: 180px;
     margin: 0;
 }
 
@@ -124,12 +128,12 @@ body {
 }
 
 
-.logo-container {
-    max-width: 900px;
+.logo-container-header {
+    max-width: 50%;
     margin: 0 auto 20px;
 }
 
-.logo-container img {
+.logo-container-header img {
     width: 100%;
     height: auto;
     filter: drop-shadow(0 10px 30px rgba(139, 195, 74, 0.3));
@@ -313,5 +317,22 @@ body {
     
     .accordion-content-inner {
         padding: 20px;
+    }
+
+    .logo-container-header {
+        max-width: 80%;
+    }
+
+    .sticky-nav .logo-container {
+        max-width: 120px;
+    }
+
+    .sticky-nav {
+        padding: 10px 20px;
+    }
+
+    .sticky-nav .nav-links {
+        gap: 10px;
+        font-size: 0.9em;
     }
 }
