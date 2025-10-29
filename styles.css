@@ -45,6 +45,54 @@ body {
     position: relative;
 }
 
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #8bc34a;
+}
+
+.sticky-nav .logo-container {
+    max-width: 200px;
+    margin: 0;
+}
+
+.sticky-nav .logo-container img {
+    width: 100%;
+    height: auto;
+}
+
+.sticky-nav .nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.sticky-nav .nav-links a {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.sticky-nav .nav-links a:hover {
+    color: #8bc34a;
+}
+
+.sticky-nav .linkedin-icon {
+    color: #0077b5;
+    font-size: 24px;
+}
+
 .header div:last-child {
     position: absolute;
     top: 20px; /* Adjust as needed to fine-tune the spacing from the top */
@@ -93,8 +141,8 @@ body {
 }
 
 .fun-fact {
-    background: linear-gradient(135deg, #8bc34a 0%, #9ccc65 100%);
-    color: white;
+    background: white;
+    color: #1a1a1a;
     padding: 40px 60px;
 }
 
@@ -102,6 +150,11 @@ body {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 15px;
+    color: #1a1a1a;
+}
+
+.fun-fact p {
+    color: #1a1a1a;
 }
 
 .content {
