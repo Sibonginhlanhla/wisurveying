@@ -24,19 +24,22 @@
             min-height: 100vh;
         }
 
-        /* Sticky Nav Bar - outside header for proper stickiness */
+        /* Sticky Nav Bar - completely fixed approach */
         .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 25px 50px;
             background-image: url("pics/wh.png");
             background-size: cover;
             background-position: center;
-            position: sticky;
-            top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: padding 0.3s ease, background 0.3s ease;
         }
 
         .nav-bar.scrolled {
@@ -45,23 +48,32 @@
             backdrop-filter: blur(15px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             border-bottom: 4px solid #8bc34a;
-            padding: 15px 40px;
+            padding: 18px 50px;
+        }
+
+        /* Spacer to prevent content from hiding under fixed navbar */
+        .nav-spacer {
+            height: 140px;
+        }
+
+        .nav-spacer.scrolled {
+            height: 100px;
         }
 
         .logo-container-header {
-            max-width: 400px;
-            transition: all 0.3s ease;
+            width: 450px;
             cursor: pointer;
             flex-shrink: 0;
         }
 
         .nav-bar.scrolled .logo-container-header {
-            max-width: 300px;
+            width: 320px;
         }
 
         .logo-container-header img {
             width: 100%;
             height: auto;
+            display: block;
             filter: drop-shadow(0 5px 15px rgba(139, 195, 74, 0.3));
             transition: all 0.3s ease;
         }
@@ -73,19 +85,20 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 35px;
             align-items: center;
-            justify-content: flex-end;
+            margin-left: auto;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1em;
+            font-size: 1.15em;
             transition: all 0.3s ease;
             position: relative;
             padding-bottom: 5px;
+            white-space: nowrap;
         }
 
         .nav-links a::after {
@@ -119,7 +132,7 @@
 
         .linkedin-icon {
             color: #0077b5;
-            font-size: 26px;
+            font-size: 28px;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
@@ -130,7 +143,7 @@
             transform: scale(1.15) rotate(5deg);
         }
 
-        /* Header section - now without nav */
+        /* Header section */
         .header {
             background-image: url("pics/wh.png");
             background-size: cover;
@@ -308,22 +321,35 @@
             .nav-bar {
                 flex-direction: column;
                 gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-bar.scrolled {
                 padding: 15px 20px;
             }
 
+            .nav-spacer {
+                height: 220px;
+            }
+
+            .nav-spacer.scrolled {
+                height: 180px;
+            }
+
             .logo-container-header {
-                max-width: 280px;
+                width: 300px;
             }
 
             .nav-bar.scrolled .logo-container-header {
-                max-width: 220px;
+                width: 240px;
             }
 
             .nav-links {
-                gap: 15px;
-                font-size: 0.9em;
+                gap: 20px;
+                font-size: 0.95em;
                 justify-content: center;
                 flex-wrap: wrap;
+                margin-left: 0;
             }
 
             .tagline {
@@ -343,7 +369,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Nav bar is now OUTSIDE and BEFORE the header for proper stickiness -->
+        <!-- Fixed Nav bar -->
         <div class="nav-bar" id="navbar">
             <div class="logo-container-header" onclick="scrollToTop()">
                 <img src="pics/logo3.png" alt="South Aven Land Surveys">
@@ -357,6 +383,9 @@
                 </a>
             </div>
         </div>
+
+        <!-- Spacer to prevent content hiding under navbar -->
+        <div class="nav-spacer" id="navSpacer"></div>
 
         <div class="header">
             <div class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</div>
@@ -438,7 +467,7 @@
                             <p>Using advanced surveying technologies such as <strong>GNSS (GPS), total stations, drones, and LiDAR scanners</strong>, we deliver high-resolution data and detailed contour maps tailored to your project requirements.</p>
                             <p>Whether you're designing infrastructure, preparing site plans, or managing construction, our topographic surveys give you the spatial accuracy and clarity needed to make informed decisions and streamline your project workflow.</p>
                             <p>Deliverables are provided in industry-standard formats including <strong>CAD, GIS, and PDF</strong>, ready for direct integration into your engineering or architectural designs.</p>
-                        </div>
+                        </view>
                     </div>
                 </div>
 
@@ -550,12 +579,16 @@
         // Add scrolled class to navbar when user scrolls
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
+            const navSpacer = document.getElementById('navSpacer');
+            
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
+                navSpacer.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+                navSpacer.classList.remove('scrolled');
             }
         });
     </script>
 </body>
-</html>
+    </html>
