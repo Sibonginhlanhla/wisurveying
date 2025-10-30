@@ -57,7 +57,7 @@
         .logo-container img {
             height: 100%;
             width: auto;
-            filter: drop-shadow(0 4px 12px rgba(139, 195, 74, 0.4));
+            filter: none;
             transition: all 0.3s ease;
         }
 
@@ -212,12 +212,12 @@
             align-items: center;
             justify-content: center;
             gap: 40px;
-            padding: 60px 40px;
+            padding: 40px 40px;
         }
 
         .hero-logo {
-            max-width: 600px;
-            width: 90%;
+            max-width: 900px;
+            width: 95%;
             animation: fadeInScale 0.8s ease-out;
         }
 
@@ -246,6 +246,10 @@
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             letter-spacing: 2px;
             max-width: 1000px;
+        }
+
+        .tagline-indent {
+            padding-left: 25%;  /* Adjust percentage to control indent */
         }
 
         .fun-fact {
@@ -514,7 +518,10 @@
             <div class="hero-logo">
                 <img src="pics/logo3.png" alt="South Aven Land Surveys">
             </div>
-            <div class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</div>
+            <div class="tagline">
+                <div>PROFESSIONAL LAND</div>
+                <div class="tagline-indent">SURVEYING SERVICES</div>
+            </div>
         </div>
 
         <div class="fun-fact">
