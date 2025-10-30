@@ -36,9 +36,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 50px;
-            background-image: url("pics/wh.png");
-            background-size: cover;
-            background-position: center top;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             transition: all 0.4s ease;
             border-bottom: 1px solid rgba(139, 195, 74, 0.3);
@@ -46,7 +45,6 @@
 
         .nav-bar.scrolled {
             height: 90px;
-            background-image: none;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 1) 100%);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border-bottom: 3px solid #8bc34a;
@@ -145,6 +143,7 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 10;
         }
 
         .close-menu-btn:hover {
@@ -414,14 +413,14 @@
             }
 
             .close-menu-btn {
-                top: 25px;
-                right: 30px;
-                width: 40px;
-                height: 40px;
+                top: 20px;
+                right: 25px;
+                width: 42px;
+                height: 42px;
             }
 
             .close-menu-btn i {
-                font-size: 20px;
+                font-size: 22px;
             }
 
             .menu-content {
@@ -727,4 +726,4 @@
         });
     </script>
 </body>
-    </html>
+                </html>
