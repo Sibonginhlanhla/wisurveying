@@ -31,10 +31,11 @@
             left: 0;
             right: 0;
             width: 100%;
+            height: 120px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 0 50px;
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             z-index: 1000;
@@ -42,49 +43,53 @@
         }
 
         .nav-bar.scrolled {
+            height: 90px;
             background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            border-bottom: 4px solid #8bc34a;
-            padding: 15px 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #8bc34a;
         }
 
-        .logo-container-header {
-            width: 75%;
-            max-width: 450px;
+        /* Logo - takes 3/4 of nav height */
+        .logo-container {
+            height: 75%;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .logo-container-header img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 5px 15px rgba(139, 195, 74, 0.5));
+        .logo-container img {
+            height: 100%;
+            width: auto;
+            filter: drop-shadow(0 4px 12px rgba(139, 195, 74, 0.4));
             transition: all 0.3s ease;
         }
 
-        .logo-container-header:hover img {
-            filter: drop-shadow(0 8px 25px rgba(139, 195, 74, 0.7));
-            transform: scale(1.02);
+        .logo-container:hover img {
+            filter: drop-shadow(0 6px 16px rgba(139, 195, 74, 0.6));
+            transform: scale(1.03);
         }
 
-        /* Hamburger Menu Button */
+        /* Hamburger Menu */
         .hamburger {
             width: 40px;
-            height: 30px;
-            position: relative;
-            cursor: pointer;
+            height: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            transform: scale(1.1);
         }
 
         .hamburger span {
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: white;
-            border-radius: 2px;
+            border-radius: 3px;
             transition: all 0.3s ease;
         }
 
@@ -93,7 +98,7 @@
         }
 
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
+            transform: rotate(45deg) translate(8px, 8px);
         }
 
         .hamburger.active span:nth-child(2) {
@@ -101,83 +106,85 @@
         }
 
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(10px, -10px);
+            transform: rotate(-45deg) translate(8px, -8px);
         }
 
         /* Slide-out Menu */
-        .slide-menu {
+        .menu-overlay {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 320px;
+            width: 100%;
+            max-width: 400px;
             height: 100vh;
             background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
-            z-index: 999;
+            z-index: 1001;
             transition: right 0.4s ease;
-            padding: 100px 40px 40px 40px;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
             overflow-y: auto;
         }
 
-        .slide-menu.active {
+        .menu-overlay.active {
             right: 0;
         }
 
-        .slide-menu a {
+        .menu-content {
+            padding: 50px 40px 40px 40px;
+        }
+
+        .menu-content a {
             display: block;
             color: white;
             text-decoration: none;
-            font-size: 1.3em;
+            font-size: 1.5em;
             font-weight: 600;
             padding: 20px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
-        .slide-menu a:hover {
+        .menu-content a:hover {
             color: #8bc34a;
-            padding-left: 10px;
+            padding-left: 15px;
         }
 
-        .slide-menu .linkedin-icon {
+        .menu-content .linkedin-icon {
             color: #0077b5;
-            font-size: 32px;
+            font-size: 1.8em;
             margin-top: 30px;
             display: inline-block;
-            transition: all 0.3s ease;
         }
 
-        .slide-menu .linkedin-icon:hover {
+        .menu-content .linkedin-icon:hover {
             color: #8bc34a;
-            transform: scale(1.15) rotate(5deg);
         }
 
-        /* Overlay for menu */
-        .menu-overlay {
+        /* Backdrop for menu */
+        .menu-backdrop {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
-        .menu-overlay.active {
+        .menu-backdrop.active {
             opacity: 1;
             visibility: visible;
         }
 
-        /* Hero Header Section */
-        .header {
+        /* Hero Section with Background Image */
+        .hero-section {
+            margin-top: 120px;
             background-image: url("pics/wh.png");
             background-size: cover;
             background-position: center;
             border-bottom: 4px solid #8bc34a;
-            padding-top: 100px;
             min-height: 400px;
             display: flex;
             align-items: center;
@@ -185,12 +192,13 @@
         }
 
         .tagline {
-            font-size: 2.2em;
+            font-size: 2.5em;
             color: white;
             font-weight: 600;
             text-align: center;
             padding: 60px 40px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
         }
 
         .fun-fact {
@@ -353,35 +361,36 @@
 
         @media (max-width: 768px) {
             .nav-bar {
-                padding: 15px 25px;
+                height: 90px;
+                padding: 0 25px;
             }
 
             .nav-bar.scrolled {
-                padding: 12px 25px;
+                height: 70px;
             }
 
-            .logo-container-header {
-                max-width: 280px;
-            }
-
-            .slide-menu {
-                width: 280px;
-                padding: 80px 30px 30px 30px;
-            }
-
-            .slide-menu a {
-                font-size: 1.15em;
-                padding: 18px 0;
-            }
-
-            .header {
-                padding-top: 80px;
+            .hero-section {
+                margin-top: 90px;
                 min-height: 300px;
             }
 
             .tagline {
-                font-size: 1.4em;
+                font-size: 1.5em;
                 padding: 40px 25px;
+                letter-spacing: 1px;
+            }
+
+            .menu-overlay {
+                max-width: 100%;
+            }
+
+            .menu-content {
+                padding: 100px 30px 30px 30px;
+            }
+
+            .menu-content a {
+                font-size: 1.3em;
+                padding: 15px 0;
             }
 
             .content {
@@ -396,13 +405,20 @@
                 padding: 30px 25px;
             }
         }
+
+        @media (max-width: 480px) {
+            .hamburger {
+                width: 35px;
+                height: 35px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Fixed Navigation Bar -->
-        <div class="nav-bar" id="navbar">
-            <div class="logo-container-header" onclick="scrollToTop()">
+        <nav class="nav-bar" id="navbar">
+            <div class="logo-container" onclick="scrollToTop()">
                 <img src="pics/logo3.png" alt="South Aven Land Surveys">
             </div>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -410,23 +426,25 @@
                 <span></span>
                 <span></span>
             </div>
-        </div>
+        </nav>
 
-        <!-- Menu Overlay -->
-        <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+        <!-- Menu Backdrop -->
+        <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
 
         <!-- Slide-out Menu -->
-        <div class="slide-menu" id="slideMenu">
-            <a href="#servicesec" onclick="toggleMenu()">Services</a>
-            <a href="#aboutsec" onclick="toggleMenu()">About</a>
-            <a href="#contactsec" onclick="toggleMenu()">Contacts</a>
-            <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
-                <i class="fab fa-linkedin"></i>
-            </a>
+        <div class="menu-overlay" id="menuOverlay">
+            <div class="menu-content">
+                <a href="#servicesec" onclick="closeMenu()">Services</a>
+                <a href="#aboutsec" onclick="closeMenu()">About</a>
+                <a href="#contactsec" onclick="closeMenu()">Contacts</a>
+                <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
         </div>
 
-        <!-- Hero Header Section -->
-        <div class="header">
+        <!-- Hero Section with Background Image -->
+        <div class="hero-section">
             <div class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</div>
         </div>
 
@@ -616,23 +634,54 @@
 
         function toggleMenu() {
             const hamburger = document.getElementById('hamburger');
-            const slideMenu = document.getElementById('slideMenu');
             const menuOverlay = document.getElementById('menuOverlay');
+            const menuBackdrop = document.getElementById('menuBackdrop');
             
             hamburger.classList.toggle('active');
-            slideMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
+            menuBackdrop.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (menuOverlay.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         }
 
+        function closeMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuBackdrop = document.getElementById('menuBackdrop');
+            
+            hamburger.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            menuBackdrop.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Add scrolled class to navbar when user scrolls
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.menu-content a:not(.linkedin-icon)').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMenu();
+            }
+        });
     </script>
 </body>
-</html>
+    </html>
