@@ -36,15 +36,16 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 50px;
-            background: transparent;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.25) 100%);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             transition: all 0.4s ease;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.2);
         }
 
         .nav-bar.scrolled {
             height: 90px;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 1) 100%);
-            backdrop-filter: blur(15px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             border-bottom: 3px solid #8bc34a;
         }
@@ -128,8 +129,34 @@
             right: 0;
         }
 
+        .close-menu-btn {
+            position: absolute;
+            top: 35px;
+            right: 40px;
+            width: 45px;
+            height: 45px;
+            background: rgba(139, 195, 74, 0.2);
+            border: 2px solid #8bc34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-menu-btn:hover {
+            background: #8bc34a;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .close-menu-btn i {
+            color: white;
+            font-size: 24px;
+        }
+
         .menu-content {
-            padding: 50px 40px 40px 40px;
+            padding: 100px 40px 40px 40px;
         }
 
         .menu-content a {
@@ -684,4 +711,4 @@
         });
     </script>
 </body>
-                        </html>
+    </html>
