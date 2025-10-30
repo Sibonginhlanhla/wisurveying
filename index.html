@@ -24,7 +24,7 @@
             min-height: 100vh;
         }
 
-        /* Sticky Nav Bar - completely fixed approach */
+        /* Fixed Navigation Bar */
         .nav-bar {
             position: fixed;
             top: 0;
@@ -34,129 +34,163 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
-            background-image: url("pics/wh.png");
-            background-size: cover;
-            background-position: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            transition: padding 0.3s ease, background 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .nav-bar.scrolled {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(249, 249, 249, 0.98) 100%);
-            background-image: none;
-            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.98);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             border-bottom: 4px solid #8bc34a;
-            padding: 18px 50px;
-        }
-
-        /* Spacer to prevent content from hiding under fixed navbar */
-        .nav-spacer {
-            height: 140px;
-        }
-
-        .nav-spacer.scrolled {
-            height: 100px;
+            padding: 15px 40px;
         }
 
         .logo-container-header {
-            width: 450px;
+            width: 75%;
+            max-width: 450px;
             cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .nav-bar.scrolled .logo-container-header {
-            width: 320px;
+            transition: all 0.3s ease;
         }
 
         .logo-container-header img {
             width: 100%;
             height: auto;
             display: block;
-            filter: drop-shadow(0 5px 15px rgba(139, 195, 74, 0.3));
+            filter: drop-shadow(0 5px 15px rgba(139, 195, 74, 0.5));
             transition: all 0.3s ease;
         }
 
         .logo-container-header:hover img {
-            filter: drop-shadow(0 8px 20px rgba(139, 195, 74, 0.5));
+            filter: drop-shadow(0 8px 25px rgba(139, 195, 74, 0.7));
             transform: scale(1.02);
         }
 
-        .nav-links {
+        /* Hamburger Menu Button */
+        .hamburger {
+            width: 40px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
             display: flex;
-            gap: 35px;
-            align-items: center;
-            margin-left: auto;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 1001;
         }
 
-        .nav-links a {
+        .hamburger span {
+            width: 100%;
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-bar.scrolled .hamburger span {
+            background: #2d2d2d;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(10px, -10px);
+        }
+
+        /* Slide-out Menu */
+        .slide-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            height: 100vh;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: right 0.4s ease;
+            padding: 100px 40px 40px 40px;
+            overflow-y: auto;
+        }
+
+        .slide-menu.active {
+            right: 0;
+        }
+
+        .slide-menu a {
+            display: block;
             color: white;
             text-decoration: none;
+            font-size: 1.3em;
             font-weight: 600;
-            font-size: 1.15em;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            position: relative;
-            padding-bottom: 5px;
-            white-space: nowrap;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #8bc34a;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
+        .slide-menu a:hover {
             color: #8bc34a;
-            transform: translateY(-2px);
+            padding-left: 10px;
         }
 
-        .nav-bar.scrolled .nav-links a {
-            color: #2d2d2d;
-            font-weight: 600;
-        }
-
-        .nav-bar.scrolled .nav-links a:hover {
-            color: #8bc34a;
-        }
-
-        .linkedin-icon {
+        .slide-menu .linkedin-icon {
             color: #0077b5;
-            font-size: 28px;
-            display: flex;
-            align-items: center;
+            font-size: 32px;
+            margin-top: 30px;
+            display: inline-block;
             transition: all 0.3s ease;
         }
 
-        .linkedin-icon:hover {
-            color: #005682;
+        .slide-menu .linkedin-icon:hover {
+            color: #8bc34a;
             transform: scale(1.15) rotate(5deg);
         }
 
-        /* Header section */
+        /* Overlay for menu */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Header Section */
         .header {
             background-image: url("pics/wh.png");
             background-size: cover;
             background-position: center;
             border-bottom: 4px solid #8bc34a;
+            padding-top: 100px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .tagline {
-            font-size: 1.8em;
+            font-size: 2.2em;
             color: white;
-            font-weight: 500;
+            font-weight: 600;
             text-align: center;
-            padding: 40px 40px 60px 40px;
+            padding: 60px 40px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .fun-fact {
@@ -319,42 +353,35 @@
 
         @media (max-width: 768px) {
             .nav-bar {
-                flex-direction: column;
-                gap: 20px;
-                padding: 20px;
+                padding: 15px 25px;
             }
 
             .nav-bar.scrolled {
-                padding: 15px 20px;
-            }
-
-            .nav-spacer {
-                height: 220px;
-            }
-
-            .nav-spacer.scrolled {
-                height: 180px;
+                padding: 12px 25px;
             }
 
             .logo-container-header {
-                width: 300px;
+                max-width: 280px;
             }
 
-            .nav-bar.scrolled .logo-container-header {
-                width: 240px;
+            .slide-menu {
+                width: 280px;
+                padding: 80px 30px 30px 30px;
             }
 
-            .nav-links {
-                gap: 20px;
-                font-size: 0.95em;
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-left: 0;
+            .slide-menu a {
+                font-size: 1.15em;
+                padding: 18px 0;
+            }
+
+            .header {
+                padding-top: 80px;
+                min-height: 300px;
             }
 
             .tagline {
-                font-size: 1.2em;
-                padding: 30px 20px;
+                font-size: 1.4em;
+                padding: 40px 25px;
             }
 
             .content {
@@ -364,29 +391,41 @@
             .accordion-header {
                 padding: 20px;
             }
+
+            .fun-fact, .about-section {
+                padding: 30px 25px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Fixed Nav bar -->
+        <!-- Fixed Navigation Bar -->
         <div class="nav-bar" id="navbar">
             <div class="logo-container-header" onclick="scrollToTop()">
                 <img src="pics/logo3.png" alt="South Aven Land Surveys">
             </div>
-            <div class="nav-links">    
-                <a href="#servicesec">Services</a>
-                <a href="#aboutsec">About</a>
-                <a href="#contactsec">Contacts</a>
-                <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
-                    <i class="fab fa-linkedin"></i>
-                </a>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
 
-        <!-- Spacer to prevent content hiding under navbar -->
-        <div class="nav-spacer" id="navSpacer"></div>
+        <!-- Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
+        <!-- Slide-out Menu -->
+        <div class="slide-menu" id="slideMenu">
+            <a href="#servicesec" onclick="toggleMenu()">Services</a>
+            <a href="#aboutsec" onclick="toggleMenu()">About</a>
+            <a href="#contactsec" onclick="toggleMenu()">Contacts</a>
+            <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </div>
+
+        <!-- Hero Header Section -->
         <div class="header">
             <div class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</div>
         </div>
@@ -467,7 +506,7 @@
                             <p>Using advanced surveying technologies such as <strong>GNSS (GPS), total stations, drones, and LiDAR scanners</strong>, we deliver high-resolution data and detailed contour maps tailored to your project requirements.</p>
                             <p>Whether you're designing infrastructure, preparing site plans, or managing construction, our topographic surveys give you the spatial accuracy and clarity needed to make informed decisions and streamline your project workflow.</p>
                             <p>Deliverables are provided in industry-standard formats including <strong>CAD, GIS, and PDF</strong>, ready for direct integration into your engineering or architectural designs.</p>
-                        </view>
+                        </div>
                     </div>
                 </div>
 
@@ -568,7 +607,6 @@
             }
         }
 
-        // Scroll to top function
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
@@ -576,19 +614,25 @@
             });
         }
 
-        // Add scrolled class to navbar when user scrolls
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const slideMenu = document.getElementById('slideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            hamburger.classList.toggle('active');
+            slideMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        }
+
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
-            const navSpacer = document.getElementById('navSpacer');
             
-            if (window.scrollY > 50) {
+            if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
-                navSpacer.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
-                navSpacer.classList.remove('scrolled');
             }
         });
     </script>
 </body>
-    </html>
+</html>
