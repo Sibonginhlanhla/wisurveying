@@ -173,10 +173,21 @@
             color: #0077b5;
             font-size: 1.8em;
             margin-top: 30px;
-            display: inline-block;
+            display: block;
         }
 
         .menu-content .linkedin-icon:hover {
+            color: #8bc34a;
+        }
+
+        .menu-content .whatsapp-icon {
+            color: #25D366;
+            font-size: 1.8em;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .menu-content .whatsapp-icon:hover {
             color: #8bc34a;
         }
 
@@ -521,11 +532,15 @@
                 <i class="fas fa-times"></i>
             </div>
             <div class="menu-content">
+                <a href="#" onclick="scrollToTop(); closeMenu()">Home</a>
                 <a href="#servicesec" onclick="closeMenu()">Services</a>
                 <a href="#aboutsec" onclick="closeMenu()">About</a>
                 <a href="#contactsec" onclick="closeMenu()">Contacts</a>
                 <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank" class="linkedin-icon">
                     <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://wa.me/27822093129" target="_blank" class="whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
         </div>
@@ -686,9 +701,11 @@
             <div id="contactsec" class="section">
                 <h2>Contacts</h2>
                 <div class="contact-info">
-                    <div class="contact-item">📞 <strong>Phone:</strong> <a href="tel:082 209 3129">082 209 3129</a></div>
-                    <div class="contact-item">✉️ <strong>Email:</strong> <a href="mailto:sage.mbulazi@southaven.co.za">sage.mbulazi@southaven.co.za</a></div>
-                    <div class="contact-item">📍 <strong>Location:</strong> Unit 4, First Floor, K101 Office Park Capital Hill Commercial Estate Midrand</div>
+                    <div class="contact-item"><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:082 209 3129">082 209 3129</a></div>
+                    <div class="contact-item"><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:sage.mbulazi@southaven.co.za">sage.mbulazi@southaven.co.za</a></div>
+                    <div class="contact-item"><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/27822093129" target="_blank">Chat with us</a></div>
+                    <div class="contact-item"><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/108241182/admin/dashboard/" target="_blank">Follow us</a></div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> Unit 4, First Floor, K101 Office Park Capital Hill Commercial Estate Midrand</div>
                 </div>
             </div>
         </div>
