@@ -368,6 +368,27 @@
             padding: 30px;
             background: #f9f9f9;
             border-top: 2px solid #8bc34a;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: white;
+        }
+
+        .accordion-content-inner.has-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(249, 249, 249, 0.5);
+            z-index: 0;
+        }
+
+        .accordion-content-inner.has-background * {
+            position: relative;
+            z-index: 1;
         }
 
         .accordion-content p {
@@ -512,7 +533,7 @@
         <!-- Hero Section with Background Image -->
         <div class="hero-section">
             <div class="hero-logo">
-                <img src="logo.png" alt="South Aven Land Surveys">
+                <img src="pics/logo3.png" alt="South Aven Land Surveys">
             </div>
             <div class="tagline">PROFESSIONAL LAND SURVEYING SERVICES</div>
         </div>
@@ -541,7 +562,7 @@
                         <span class="accordion-icon">▼</span>
                     </div>
                     <div class="accordion-content">
-                        <div class="accordion-content-inner">
+                        <div class="accordion-content-inner has-background" style="background-image: url('pics/lr.png');">
                             <p>Our work ensures the accurate delineation of property boundaries and the secure registration of land parcels within the <strong>Surveyor-General's</strong> cadastral system.</p>
                             <p>Our services cover a wide range of cadastral projects, including:</p>
                             <ul>
