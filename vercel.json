@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://www.southavenlandsurveys.co.za/:path*",
+      "permanent": true
+    }
+  ]
+}
